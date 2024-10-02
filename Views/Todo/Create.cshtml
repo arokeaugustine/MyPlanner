@@ -1,0 +1,49 @@
+﻿@model Todo;
+@{
+    ViewData["Title"] = "Create Page";
+
+    @if (TempData["success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+}
+
+
+<div class="container">
+
+    <h4 class="mt-4"> Create a task</h4>
+
+    <div class="my-auto mx-5 py-5 justify-content-center">
+        <form asp-action="CreateEntry" asp-controller="Todo">
+            <div>
+                <label>Name</label>
+                <input type="text" name="name" value="" Placeholder="Name of Item" class="form-control" asp-for="Name" />
+               
+            </div>
+
+            <div>
+                <label>Description</label>
+                <input type="text" name="Description" value="" Placeholder="Description of Item" class="form-control" asp-for="Description" />
+            </div>
+              <div>
+                <label>Start time</label>
+                <input type="datetime-local" name="StartTime" value="" class="form-control" asp-for="StartTime" />
+            </div>
+            <div>
+                <label>End time</label>
+                <input type="datetime-local" name="EndTime" value="" class="form-control" asp-for="EndTime" />
+            </div>
+         
+       
+          <div class="text-center mt-3">
+                <button class="btn btn-primary mx-2 my2">Submit</button>
+          </div>
+        </form>
+
+    </div>
+
+</div>

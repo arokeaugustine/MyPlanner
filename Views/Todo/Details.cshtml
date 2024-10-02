@@ -1,0 +1,52 @@
+﻿@model Todo;
+
+@{
+    ViewData["Title"] = "Create Page";
+
+    @if (TempData["success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+}
+
+<div class="container">
+
+
+    <h2 class="text-centered h-25">
+        My Plans
+    </h2>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"> @Model.Name</h5>
+            <p> <strong>Date Created</strong> @Model.DateCreated</p>
+            <p class="card-text">@Model.Description</p>
+
+            <p><strong>Start Time</strong> : @Model.StartTime</p>
+            <p> <strong>End Time </strong>: @Model.EndTime </p>
+
+            <div class="flex justify-content-between">
+
+                @if (@Model.IsDone == true)
+                {
+                    <button class="btn btn-success mx-2 my-1">Task Completed</button>
+                }
+                else
+                {
+                    <button class="btn btn-warning mx-2 my-1">Yet to be done</button>
+                }
+
+                <a asp-controller="Todo" asp-action="GetUpdate" asp-route-id="@Model.Id" class="btn btn-warning">Update</a>
+            </div>
+
+            <div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,83 @@
+﻿@model List<Todo>;
+@{
+    ViewData["Title"] = "Create Page";
+
+    @if (TempData["success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["delete"] != null)
+    {
+
+        @if (TempData["delete"].ToString() == "true")
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Deleted Successfully
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                An error occured while trying to delete this entry.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+    }
+
+
+}
+
+
+<div class="container mx-2 my-5">
+    <h2>My Plans</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>StartTime</td>
+                <td>EndTime</td>
+                <td>IsDone</td>
+                <td></td>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @if (Model != null)
+            {
+                @foreach (var data in Model)
+                {
+                    <tr>
+                        <td>@data.Name</td>
+                        <td>@data.StartTime</td>
+                        <td>@data.EndTime</td>
+                        <td>
+                            @if (data.IsDone == true)
+                            {
+                                <button class="btn btn-success mx-2 my-1">Task Completed</button>
+                            }
+                            else
+                            {
+                                <button class="btn btn-warning mx-2 my-1">Yet to be done</button>
+                            }
+                        </td>
+
+                        <td>
+                            <div class="flex justify-content-around">
+                                <a asp-controller="Todo" asp-action="Details" asp-route-id="@data.Id" class="btn btn-primary">Details</a>
+                                <a asp-controller="Todo" asp-action="GetUpdate" asp-route-id="@data.Id" class="btn btn-warning">Update</a>
+                                <a asp-controller="Todo" asp-action="Delete" asp-route-id="@data.Id" class="btn btn-danger">Delete</a>
+                            </div>                         
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+
+    </table>
+</div>
