@@ -4,27 +4,36 @@
 
     @if (TempData["success"] != null)
     {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            @TempData["success"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+        <script>
+            Swal.fire({
+                text: "@TempData["success"]",
+                icon: "success"
+            });
+        
+        </script>
     }
     @if (TempData["delete"] != null)
     {
 
         @if (TempData["delete"].ToString() == "true")
         {
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                Deleted Successfully
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+            <script>
+                Swal.fire({
+                    text: "Item deleted successfully!",
+                    icon: "success"
+                });
+
+            </script>
         }
         else
         {
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                An error occured while trying to delete this entry.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+            <script>
+                Swal.fire({
+                    text: "An error occured while trying to delete this entry",
+                    icon: "error"
+                });
+
+            </script>
         }
     }
 
